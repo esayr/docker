@@ -6,7 +6,7 @@ ubuntu 基础镜像, 在官方 ubuntu 14.04 镜像的基础上:
 
 2. 安装了 wget curl git
 
-### wget
+### Usage
 
 #### Build
 
