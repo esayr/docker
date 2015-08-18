@@ -1,4 +1,4 @@
-FROM esayr/ubuntu
+FROM docker.v909.com/cn-ubuntu:14.04
 
 MAINTAINER Easy Rong <phpvcn@php.net>
 

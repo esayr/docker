@@ -1,4 +1,4 @@
-FROM esayr/nginx-php
+FROM docker.v909.com/nginx-php
 
 MAINTAINER Easy Rong <phpvcn@php.net>
 
