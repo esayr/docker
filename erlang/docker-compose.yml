@@ -1,0 +1,18 @@
+erlang:
+  image: docker.v909.com/erlang
+  ports:
+    - 30080:30080
+  links:
+    - redis:redis
+  volumes:
+    - $HOME/erlang:/data/erlang
+
+
+redis:
+  image: docker.v909.com/reborn/server
+  ports:
+    - 6379:6379
+  environment:
+    REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
+  volumes:
+    - $HOME/redis-db:/var/lib/redis

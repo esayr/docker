@@ -45,7 +45,7 @@ RUN wget http://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && \
     apt-get update && \
     apt-get install -y software-properties-common && \
     apt-get upgrade -y && \
-    apt-get install -y --no-install-recommends erlang build-essential && \
+    apt-get install -y --no-install-recommends erlang build-essential openssh-server && \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps  && \
     apt-get clean && \
     apt-get autoclean && \
@@ -54,10 +54,16 @@ RUN wget http://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && \
     rm -rf /usr/share/man/?? && \
     rm -rf /usr/share/man/??_*
 
+# setting sshd service
+RUN echo 'root:root' | chpasswd && \
+mkdir -p /var/run/sshd
+
+ENTRYPOINT ["/usr/sbin/sshd", "-D"]
+EXPOSE 22
 
 # rebar mad relx 
 COPY bin/* /usr/local/bin/
 
 
 # Setup Volume
-VOLUME ["/data/project"]
+VOLUME ["/data/erlang"]
