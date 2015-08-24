@@ -40,16 +40,34 @@ RUN ln -sf /bin/true /sbin/initctl
 #
 #ENV PATH /usr/local/erlang/bin:$PATH
 
+#RUN wget http://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && \
+#    dpkg -i erlang-solutions_1.0_all.deb && \
+#    apt-get update && \
+#    apt-get install -y software-properties-common && \
+#    apt-get upgrade -y && \
+#    apt-get install -y --no-install-recommends erlang build-essential openssh-server && \
+#    apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps  && \
+#    apt-get clean && \
+#    apt-get autoclean && \
+#    rm -fr erlang-solutions_1.0_all.deb && \
+#    rm -fr /var/lib/apt/lists/* && \
+#    rm -rf /usr/share/man/?? && \
+#    rm -rf /usr/share/man/??_*
+
+
 RUN wget http://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && \
+    wget http://192.168.2.14/esl-erlang_17.5.3-1~ubuntu~trusty_amd64.deb && \
     dpkg -i erlang-solutions_1.0_all.deb && \
     apt-get update && \
     apt-get install -y software-properties-common && \
     apt-get upgrade -y && \
-    apt-get install -y --no-install-recommends erlang build-essential openssh-server && \
+    apt-get install -y --no-install-recommends  build-essential libwxgtk2.8-0 openssh-server && \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps  && \
+    dpkg -i esl-erlang_17.5.3-1~ubuntu~trusty_amd64.deb  && \
     apt-get clean && \
     apt-get autoclean && \
     rm -fr erlang-solutions_1.0_all.deb && \
+    rm -fr esl-erlang_17.5.3-1~ubuntu~trusty_amd64.deb && \
     rm -fr /var/lib/apt/lists/* && \
     rm -rf /usr/share/man/?? && \
     rm -rf /usr/share/man/??_*

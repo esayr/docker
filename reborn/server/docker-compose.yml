@@ -1,0 +1,25 @@
+redis1:
+  image: docker.v909.com/reborn/server
+  ports:
+    - 8001:6379
+  volumes:
+    - /data/redis-db1:/var/lib/redis
+
+
+redis2:
+  image: docker.v909.com/reborn/server
+  ports:
+    - 8002:6379
+  volumes:
+    - /data/redis-db2:/var/lib/redis
+
+redis3:
+  image: docker.v909.com/reborn/server
+  ports:
+    - 8003:6379
+  net: none
+  dns:
+    - 10.8.0.3
+    - 10.8.0.4
+  volumes:
+    - /data/redis-db3:/var/lib/redis

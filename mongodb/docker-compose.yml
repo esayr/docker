@@ -1,0 +1,6 @@
+mongodb:
+  image: docker.v909.com/mongodb
+  ports:
+    - 27017:27017
+  volumes:
+    - /data/mongo-db:/data/db

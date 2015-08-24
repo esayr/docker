@@ -1,0 +1,10 @@
+bind9:
+  image: docker.v909.com/bind
+  ports:
+    - 53:53/udp
+    - 10000:10000
+  environment:
+    ROOT_PASSWORD: bluefir.cn
+  volumes:
+    - $HOME/bind9:/data
+  restart: always
