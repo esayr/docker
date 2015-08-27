@@ -62,7 +62,7 @@ EOF
 
 docker build --force-rm -t baba3/gamesrv . 
 
-#rm -f Dockerfile
+rm -f Dockerfile
 rm -rf $RELEASE_DIR/$REL_NAME 
 
 cd -

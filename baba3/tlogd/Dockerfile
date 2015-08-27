@@ -1,32 +1,27 @@
-FROM docker.v909.com/cn-ubuntu:14.04
+FROM centos:6.6
 
 MAINTAINER Easy Rong <phpvcn@php.net>
 
-# Surpress Upstart errors/warning
-RUN dpkg-divert --local --rename --add /sbin/initctl
-RUN ln -sf /bin/true /sbin/initctl
+RUN yes|cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
-RUN apt-get update && \
-    apt-get update &&  \
-    apt-get upgrade -y && \
-    apt-get install -y --no-install-recommends supervisor  && \
-    apt-get autoremove -y && \
-    apt-get clean && \
-    apt-get autoclean && \
-    rm -fr /var/lib/apt/lists/* && \
-    rm -rf /usr/share/man/?? && \
-    rm -rf /usr/share/man/??_*
+RUN yum -y install glibc.i686 gtk2.i686 python-setuptools
 
-RUN mkdir -p /tlogd
-ADD tlogd /tlogd
-RUN chmod +x /tlogd/*.sh
+#Install supervisor
+RUN easy_install supervisor
+
+RUN mkdir -p /data/tlogd
+RUN mkdir -p /data/logs
+
+ADD tlogd /data/tlogd/tlogd-server
+ADD logtool /data/tlogd/logtool
+RUN chmod +x /data/tlogd/tlogd-server/*.sh
+RUN chmod +x /data/tlogd/logtool/bin/*.sh
 
 
 # Supervisor Config
-ADD ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+ADD ./supervisord.conf /etc/supervisord.conf
 
-
-VOLUME /data/log
+VOLUME /data/logs
 
 EXPOSE 6660/udp
 

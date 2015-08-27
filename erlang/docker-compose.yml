@@ -1,5 +1,5 @@
 erlang:
-  image: erlang:1.7
+  image: docker.v909.com/erlang:17.5.3
   ports:
     - 8081:8080
   links:

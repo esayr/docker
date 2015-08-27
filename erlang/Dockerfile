@@ -1,4 +1,4 @@
-FROM docker.v909.com/cn-ubuntu:14.04
+FROM docker.v909.com/cn-ubuntu:14.04.ssh
 
 MAINTAINER Easy Rong <phpvcn@php.net>
 
@@ -45,7 +45,7 @@ RUN ln -sf /bin/true /sbin/initctl
 #    apt-get update && \
 #    apt-get install -y software-properties-common && \
 #    apt-get upgrade -y && \
-#    apt-get install -y --no-install-recommends erlang build-essential openssh-server && \
+#    apt-get install -y --no-install-recommends erlang && \
 #    apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps  && \
 #    apt-get clean && \
 #    apt-get autoclean && \
@@ -59,11 +59,10 @@ RUN wget http://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && \
     wget http://192.168.2.14/esl-erlang_17.5.3-1~ubuntu~trusty_amd64.deb && \
     dpkg -i erlang-solutions_1.0_all.deb && \
     apt-get update && \
-    apt-get install -y software-properties-common && \
     apt-get upgrade -y && \
-    apt-get install -y --no-install-recommends  build-essential libwxgtk2.8-0 openssh-server && \
-    apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps  && \
+    apt-get install -y --no-install-recommends libwxgtk2.8-0 && \
     dpkg -i esl-erlang_17.5.3-1~ubuntu~trusty_amd64.deb  && \
+    apt-get purge -y --auto-remove  && \
     apt-get clean && \
     apt-get autoclean && \
     rm -fr erlang-solutions_1.0_all.deb && \
@@ -72,16 +71,9 @@ RUN wget http://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && \
     rm -rf /usr/share/man/?? && \
     rm -rf /usr/share/man/??_*
 
-# setting sshd service
-RUN echo 'root:root' | chpasswd && \
-mkdir -p /var/run/sshd
-
-ENTRYPOINT ["/usr/sbin/sshd", "-D"]
-EXPOSE 22
 
 # rebar mad relx 
 COPY bin/* /usr/local/bin/
-
 
 # Setup Volume
 VOLUME ["/data/erlang"]
