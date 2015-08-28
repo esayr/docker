@@ -8,8 +8,8 @@ RELEASE_DIR="$(cd "$SCRIPT_DIR" && pwd)"
 SRC_DIR="/data/erlang/baba3_server/"
 
 echo $ARM
-docker rm -f baba3-gamesrv
-docker rmi baba3/gamesrv
+docker rm -f game-server
+docker rmi docker.v909.com/baba3/game-server
 
 
 PACKAGE_NAME=$(cd "$SRC_DIR" && ls -1t *.gz | head -5)
@@ -26,7 +26,6 @@ MAINTAINER Easy Rong <phpvcn@php.net>
 # Surpress Upstart errors/warning
 RUN dpkg-divert --local --rename --add /sbin/initctl
 RUN ln -sf /bin/true /sbin/initctl
-ENV MYSQL_HOST abc.test.com
 
 RUN apt-get update && \
     apt-get update && \
@@ -60,7 +59,7 @@ CMD ["/bin/bash", "/start.sh"]
 
 EOF
 
-docker build --force-rm -t baba3/gamesrv . 
+docker build --force-rm -t docker.v909.com/baba3/game-server . 
 
 rm -f Dockerfile
 rm -rf $RELEASE_DIR/$REL_NAME 

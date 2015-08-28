@@ -1,0 +1,8 @@
+yaf:
+  image: docker.v909.com/php-yaf
+  ports:
+    - 80:80
+    - 443:443
+  volumes:
+    - /data/www:/var/www
+    - /data/nginx/sites-enabled:/etc/nginx/sites-enabled

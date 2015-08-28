@@ -22,4 +22,4 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN \cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime

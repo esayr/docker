@@ -1,4 +1,4 @@
-FROM docker.v909.com/cn-ubuntu:14.04.ssh
+FROM docker.v909.com/cn-ubuntu:14.04
 
 MAINTAINER Easy Rong <phpvcn@php.net>
 
@@ -57,10 +57,11 @@ RUN ln -sf /bin/true /sbin/initctl
 
 RUN wget http://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && \
     wget http://192.168.2.14/esl-erlang_17.5.3-1~ubuntu~trusty_amd64.deb && \
-    dpkg -i erlang-solutions_1.0_all.deb && \
-    apt-get update && \
+    dpkg -i erlang-solutions_1.0_all.deb
+
+RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y --no-install-recommends libwxgtk2.8-0 && \
+    apt-get install -y --no-install-recommends libwxgtk2.8-0 build-essential && \
     dpkg -i esl-erlang_17.5.3-1~ubuntu~trusty_amd64.deb  && \
     apt-get purge -y --auto-remove  && \
     apt-get clean && \

@@ -60,7 +60,7 @@
                 <Type> FILE </Type>
 					<Device>
 						<File>
-							<Pattern>/data/log/65535_%Y%m%d_%H00.log</Pattern>
+							<Pattern>/data/logs/65535_%Y%m%d_%H00.log</Pattern>
 							<BuffSize> 1024000 </BuffSize>
 							<SizeLimit> 1024000000 </SizeLimit>
 							<Precision> 60 </Precision>

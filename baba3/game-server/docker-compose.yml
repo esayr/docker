@@ -1,5 +1,5 @@
 gameserver:
-  image: baba3/gamesrv
+  image: docker.v909.com/baba3/game-server
   ports:
     - 8080:8080
   volumes:

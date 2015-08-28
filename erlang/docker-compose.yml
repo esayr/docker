@@ -1,5 +1,6 @@
 erlang:
   image: docker.v909.com/erlang:17.5.3
+  stdin_open: true
   ports:
     - 8081:8080
   links:
