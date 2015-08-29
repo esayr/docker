@@ -5,8 +5,13 @@ gameserver:
   volumes:
     - $HOME/baba3-log:/data/log
   extra_hosts:
-    - "rdb.baba.com:192.168.2.13"
+    - "db.baba.com:192.168.2.13"
     - "tlog1.baba.com:192.168.59.103"
     - "tlog2.baba.com:192.168.59.103"
     - "redis.baba.com:192.168.2.14"
+
+  environment:
+    REDIS_DB_PORT: 19000
+    TLOG_SERVER: '["192.168.59.103"]'
+    TLOG_PORT: 6660
 
