@@ -38,6 +38,7 @@ set -e
   : ${TLOG_SERVER:='["tlog1.baba.com","tlog2.baba.com"]'}
   : ${TLOG_PORT:=6660}
 
+  : ${DB_ENABLE:="true"}
   : ${DB_HOST:="db.baba.com"}
   : ${DB_PORT:="3306"}
   : ${DB_USER:="baba3"}
@@ -62,6 +63,7 @@ set -e
   set_config 'TLOG_PORT' $TLOG_PORT
 
   # mysql database
+  set_config 'DB_ENABLE' $DB_ENABLE
   set_config 'DB_HOST' $DB_HOST
   set_config 'DB_PORT' $DB_PORT
   set_config 'DB_USER' $DB_USER

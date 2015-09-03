@@ -4,6 +4,12 @@ tlog:
     - 6660:6660/udp
   volumes:
     - $HOME/tlogs:/data/logs
-  extra_hosts:
-    - "tlogdb.baba.com:192.168.2.13"
+    - $HOME/hdata:/hdata
+  environment:
+      LOGS_PATH: /data/logs
+      DB_HOST: 192.168.2.13
+      DB_PORT: 3306
+      DB_USER: baba3tlog
+      DB_PASSWORD: baba3tlog$erlang
+      DB_NAME: db_baba3_logtool_1
   restart: always

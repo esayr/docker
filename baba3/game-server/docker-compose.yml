@@ -5,13 +5,25 @@ gameserver:
   volumes:
     - $HOME/baba3-log:/data/log
   extra_hosts:
-    - "db.baba.com:192.168.2.13"
     - "tlog1.baba.com:192.168.59.103"
-    - "tlog2.baba.com:192.168.59.103"
-    - "redis.baba.com:192.168.2.14"
 
   environment:
-    REDIS_DB_PORT: 19000
+    SERVER_PORT: 8080
+    IDIP_SWITCH: true
+    CHAT_SERVER: 0} #0:表示聊天服和正常服都能运行； 1:表示只能运行聊天服  2:只运行正常
+
+    REDIS_DB_HOST: "192.168.2.14"
+    REDIS_DB_PORT: 3790
+    REDIS_DB_PASSWORD: ''
+    REDIS_DB_POOL_SIZE: 10
+
     TLOG_SERVER: '["192.168.59.103"]'
     TLOG_PORT: 6660
 
+    DB_ENABLE: true
+    DB_HOST: "192.168.2.13"
+    DB_PORT: "3306"
+    DB_USER: "baba3"
+    DB_PASSWORD: "baba3\$erlang"
+    DB_NAME: "db_baba3"
+    DB_POOL_SIZE: 10
